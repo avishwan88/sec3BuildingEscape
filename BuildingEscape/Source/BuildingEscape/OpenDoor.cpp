@@ -1,6 +1,8 @@
 // Copyright Notice Arun Vish
 
 #include "OpenDoor.h"
+#include "Engine/World.h" // needed for UWorld type
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
