@@ -34,7 +34,7 @@ private:
 	ATriggerVolume * PressurePlate;
 
 	// Actor that affects trigger volume
-	UPROPERTY(EditAnywhere)
+	//UPROPERTY(EditAnywhere)
 	AActor* ActorThatOpens;
 	
 };
