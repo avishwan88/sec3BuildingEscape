@@ -30,21 +30,31 @@ void UGrabber::BeginPlay()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("%s does not contain a Physics Handler!"), *(GetOwner()->GetName()));
+		UE_LOG(LogTemp, Error, TEXT("%s does not contain a Physics Handler!"), *(GetOwner()->GetName()))
 	}
 
 	InputHandle = GetOwner()->FindComponentByClass<UInputComponent>();
 	if (InputHandle)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s has an input Handler!"), *(GetOwner()->GetName()));
+		UE_LOG(LogTemp, Warning, TEXT("%s has an input Handler!"), *(GetOwner()->GetName()))
+		InputHandle->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputHandle->BindAction("Release", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("%s does not contain an Input Handler!"), *(GetOwner()->GetName()));
+		UE_LOG(LogTemp, Error, TEXT("%s does not contain an Input Handler!"), *(GetOwner()->GetName()))
 	}
 }
 
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab key pressed!"))
+}
 
+void UGrabber::Release()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab key released!"))
+}
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
