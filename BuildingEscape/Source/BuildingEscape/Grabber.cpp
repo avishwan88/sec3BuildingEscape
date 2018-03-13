@@ -38,7 +38,7 @@ void UGrabber::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("%s has an input Handler!"), *(GetOwner()->GetName()))
 		InputHandle->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
-		InputHandle->BindAction("Release", IE_Released, this, &UGrabber::Release);
+		InputHandle->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
