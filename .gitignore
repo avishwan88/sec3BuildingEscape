@@ -8,3 +8,5 @@ BuildingEscape/Content/StarterContent/HDRI
 ## Only VS db files##
 *.VC.db
 *.suo
+*.VC.opendb
+*.sln
