@@ -41,4 +41,8 @@ private:
 	void SetupInputComponent();
 	// Return hit for first physics body within reach
 	FHitResult GetFirstPhysicsBodyWithinReach();
+	// calculate start of line
+	FVector GetReachLineStart();
+	// calculate current end of reach line
+	FVector GetReachLineEnd();
 };
