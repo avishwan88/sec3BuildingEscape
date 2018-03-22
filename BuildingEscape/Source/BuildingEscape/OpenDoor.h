@@ -41,7 +41,9 @@ private:
 
 	// Actor that affects trigger volume
 	//UPROPERTY(EditAnywhere)
-	AActor* ActorThatOpens;
+	//AActor* ActorThatOpens;
 	AActor* Owner;
+
+	float GetTotalMassOnPlate();
 	
 };
