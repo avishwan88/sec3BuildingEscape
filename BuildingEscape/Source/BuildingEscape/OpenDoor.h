@@ -37,12 +37,12 @@ private:
 	float DoorLastOpen;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume * PressurePlate;
+	ATriggerVolume * PressurePlate = nullptr;
 
 	// Actor that affects trigger volume
 	//UPROPERTY(EditAnywhere)
 	//AActor* ActorThatOpens;
-	AActor* Owner;
+	AActor* Owner = nullptr;
 
 	float GetTotalMassOnPlate();
 	

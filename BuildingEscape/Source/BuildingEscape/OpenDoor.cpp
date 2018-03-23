@@ -23,6 +23,10 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();	
 	Owner = GetOwner();
+	if (!PressurePlate) {
+		UE_LOG(LogTemp, Error, TEXT("No Trigger Volume!"));
+		return;
+	}
 }
 
 void UOpenDoor::DoorOpen()
@@ -60,6 +64,9 @@ float UOpenDoor::GetTotalMassOnPlate()
 	TArray<AActor*> OverlappingActors;
 	float totalMass = 0.f;
 	// Find all overlapping actors
+	if (!PressurePlate)
+		return;
+
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	for (const auto* pActor : OverlappingActors)
 	{
