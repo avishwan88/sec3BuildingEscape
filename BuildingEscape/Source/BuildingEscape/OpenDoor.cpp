@@ -24,7 +24,7 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();	
 	Owner = GetOwner();
 	if (!PressurePlate) {
-		UE_LOG(LogTemp, Error, TEXT("No Trigger Volume!"));
+		UE_LOG(LogTemp, Error, TEXT("No Pressure Plate for %s!"), *Owner->GetName());
 		return;
 	}
 }
@@ -52,7 +52,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	}
 
 	FString TheFloatStr = FString::SanitizeFloat(m);
-	UE_LOG(LogTemp, Warning, TEXT("Mass on plate is %s"), *TheFloatStr)
+	//UE_LOG(LogTemp, Warning, TEXT("Mass on plate is %s"), *TheFloatStr)
 
 	// check if it is time to close the door
 	if ((GetWorld()->GetTimeSeconds() - DoorLastOpen) > DoorDelayTime)
@@ -65,7 +65,7 @@ float UOpenDoor::GetTotalMassOnPlate()
 	float totalMass = 0.f;
 	// Find all overlapping actors
 	if (!PressurePlate)
-		return;
+		return totalMass;
 
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	for (const auto* pActor : OverlappingActors)
