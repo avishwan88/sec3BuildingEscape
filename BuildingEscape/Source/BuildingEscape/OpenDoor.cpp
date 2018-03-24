@@ -29,36 +29,19 @@ void UOpenDoor::BeginPlay()
 	}
 }
 
-void UOpenDoor::DoorOpen()
-{
-	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
-	UE_LOG(LogTemp, Warning, TEXT("Event Fired!"));
-	OpenDoorRequest.Broadcast();
-}
-
-void UOpenDoor::DoorClose()
-{
-	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
-}
-
-
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	auto m = GetTotalMassOnPlate();
-	if (m > 30.f)
+	if (GetTotalMassOnPlate() > TriggerMass)
 	{
-		DoorOpen();
-		DoorLastOpen = GetWorld()->GetTimeSeconds();
+		OnOpen.Broadcast();
 	}
-
-	FString TheFloatStr = FString::SanitizeFloat(m);
-	UE_LOG(LogTemp, Warning, TEXT("Mass on plate is %s"), *TheFloatStr)
-
-	// check if it is time to close the door
-	if ((GetWorld()->GetTimeSeconds() - DoorLastOpen) > DoorDelayTime)
-	DoorClose();
+	else
+	{
+		OnClose.Broadcast();
+	}
+	
 }
 
 float UOpenDoor::GetTotalMassOnPlate()
