@@ -31,7 +31,9 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::DoorOpen()
 {
-	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+	UE_LOG(LogTemp, Warning, TEXT("Event Fired!"));
+	OpenDoorRequest.Broadcast();
 }
 
 void UOpenDoor::DoorClose()
@@ -52,7 +54,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	}
 
 	FString TheFloatStr = FString::SanitizeFloat(m);
-	//UE_LOG(LogTemp, Warning, TEXT("Mass on plate is %s"), *TheFloatStr)
+	UE_LOG(LogTemp, Warning, TEXT("Mass on plate is %s"), *TheFloatStr)
 
 	// check if it is time to close the door
 	if ((GetWorld()->GetTimeSeconds() - DoorLastOpen) > DoorDelayTime)
@@ -71,7 +73,7 @@ float UOpenDoor::GetTotalMassOnPlate()
 	for (const auto* pActor : OverlappingActors)
 	{
 		totalMass += pActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-		UE_LOG(LogTemp, Warning, TEXT("%s on plate"), *pActor->GetName())
+		//UE_LOG(LogTemp, Warning, TEXT("%s on plate"), *pActor->GetName())
 	}
 	return totalMass;
 }
