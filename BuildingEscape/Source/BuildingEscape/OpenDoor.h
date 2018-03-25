@@ -31,6 +31,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FDoorEvent OnClose;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float OpenDoorAngle = 0.f;
 	
 private:
 	UPROPERTY(EditAnywhere)
