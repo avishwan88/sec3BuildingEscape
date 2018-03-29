@@ -34,6 +34,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float OpenDoorAngle = 0.f;
+
+	UPROPERTY(EditAnywhere, BluePrintReadOnly)
+	float DoorCloseDelay = 0.f;
 	
 private:
 	UPROPERTY(EditAnywhere)
