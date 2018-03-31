@@ -55,9 +55,16 @@ float UOpenDoor::GetTotalMassOnPlate()
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	for (const auto* pActor : OverlappingActors)
 	{
-		totalMass += pActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-		//UE_LOG(LogTemp, Warning, TEXT("%s on plate"), *pActor->GetName())
+		auto aMass = pActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+		FString TheFloatStr = FString::SanitizeFloat(aMass);
+		totalMass += aMass;
+		UE_LOG(LogTemp, Warning, TEXT("Actor %s mass is %s"), *pActor->GetName(),*TheFloatStr);
 	}
+	if (totalMass > 0)
+	{	
+	  FString TheFloatStr = FString::SanitizeFloat(totalMass);
+	  UE_LOG(LogTemp, Warning, TEXT("%s mass is"), *TheFloatStr);
+    }
 	return totalMass;
 }
 
