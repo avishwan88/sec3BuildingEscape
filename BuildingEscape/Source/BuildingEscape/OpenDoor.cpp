@@ -58,13 +58,13 @@ float UOpenDoor::GetTotalMassOnPlate()
 		auto aMass = pActor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
 		FString TheFloatStr = FString::SanitizeFloat(aMass);
 		totalMass += aMass;
-		UE_LOG(LogTemp, Warning, TEXT("Actor %s mass is %s"), *pActor->GetName(),*TheFloatStr);
+		//UE_LOG(LogTemp, Warning, TEXT("Actor %s mass is %s"), *pActor->GetName(),*TheFloatStr);
 	}
-	if (totalMass > 0)
+	/*if (totalMass > 0)
 	{	
 	  FString TheFloatStr = FString::SanitizeFloat(totalMass);
 	  UE_LOG(LogTemp, Warning, TEXT("%s mass is"), *TheFloatStr);
-    }
+    }*/
 	return totalMass;
 }
 
